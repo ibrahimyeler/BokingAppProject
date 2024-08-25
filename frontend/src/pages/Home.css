@@ -1,11 +1,11 @@
 .home-container {
-  background-image: url('/images/hero-bg.jpg'); /* Resim yolunu güncelle */
   background-size: cover;
   background-position: center;
   height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-image 1s ease-in-out; /* Yumuşak geçiş efekti */
 }
 
 .hero-overlay {

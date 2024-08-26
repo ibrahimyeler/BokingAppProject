@@ -1,4 +1,6 @@
-// src/pages/SignIn.tsx
+
+
+
 import React, { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useMutation } from 'react-query';
@@ -17,7 +19,11 @@ const SignIn: React.FC = () => {
   const navigate = useNavigate();
 
   const mutation = useMutation(apiClient.signIn, {
-    onSuccess: () => {
+    onSuccess: (data) => {
+      // Giriş başarılı olduğunda, kullanıcı bilgilerini kaydedin
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('firstName', data.firstName); // API yanıtından alınan kullanıcı adı
+      localStorage.setItem('lastName', data.lastName);   // API yanıtından alınan kullanıcı soyadı
       setIsSubmitted(true);
       setErrorMessage(null);
     },
@@ -86,5 +92,3 @@ const SignIn: React.FC = () => {
 };
 
 export default SignIn;
-
-

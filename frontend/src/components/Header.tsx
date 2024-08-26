@@ -1,11 +1,14 @@
+
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 import './header.css';
 
 const Header: React.FC = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
+    const [userFullName, setUserFullName] = useState<string>('');
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -13,28 +16,20 @@ const Header: React.FC = () => {
 
     useEffect(() => {
         const userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        if (userLoggedIn) {
+            const firstName = localStorage.getItem('firstName') || '';
+            const lastName = localStorage.getItem('lastName') || '';
+            setUserFullName(`${firstName} ${lastName}`);
+        }
         setIsUserLoggedIn(userLoggedIn);
-    }, []);
+    }, [location]);
 
     const handleSignOut = () => {
         localStorage.setItem('isLoggedIn', 'false');
         setIsUserLoggedIn(false);
+        setUserFullName('');
         navigate('/signin');
     };
-
-    const handleSignIn = () => {
-        navigate('/signin');
-    };
-
-    const handleSignUp = () => {
-        navigate('/register');
-    };
-
-    const toggleMenu = () => {
-        setIsMenuOpen(prev => !prev);
-    };
-
-    const title = "UnexpectedJourney.com";
 
     return (
         <header className="header-background bg-gradient-to-r from-purple-500 via-indigo-600 to-blue-700 py-6 shadow-md relative">
@@ -44,48 +39,45 @@ const Header: React.FC = () => {
                 </Link>
                 <div className="flex-1 flex justify-center">
                     <h1 className="title-text text-center">
-                        {title.split('').map((char, index) => (
-                            <span
-                                key={index}
-                                className="title-char"
-                                style={{ animationDelay: `${index * 0.1}s` }}
-                            >
-                                {char}
-                            </span>
-                        ))}
+                        UnexpectedJourney.com
                     </h1>
                 </div>
                 <div className="flex items-center space-x-2">
                     {!isAuthPage && (
                         <>
-                            {!isUserLoggedIn ? (
+                            {isUserLoggedIn ? (
+                                <>
+                                    <span className="text-white font-semibold">
+                                        Welcome to UnexpectedJourney.com {userFullName}
+                                    </span>
+                                    <button
+                                        className="text-white border-2 border-white px-4 py-2 text-sm font-semibold rounded-lg bg-transparent hover:bg-red-500 hover:text-black transition-colors duration-300"
+                                        onClick={handleSignOut}
+                                    >
+                                        Sign Out
+                                    </button>
+                                </>
+                            ) : (
                                 <>
                                     <button
                                         className="text-white border-2 border-white px-4 py-2 text-sm font-semibold rounded-lg bg-transparent hover:bg-yellow-400 hover:text-black transition-colors duration-300"
-                                        onClick={handleSignIn}
+                                        onClick={() => navigate('/signin')}
                                     >
                                         Sign In
                                     </button>
                                     <button
                                         className="text-white border-2 border-white px-4 py-2 text-sm font-semibold rounded-lg bg-transparent hover:bg-yellow-400 hover:text-black transition-colors duration-300"
-                                        onClick={handleSignUp}
+                                        onClick={() => navigate('/register')}
                                     >
                                         Sign Up
                                     </button>
                                 </>
-                            ) : (
-                                <button
-                                    className="text-white border-2 border-white px-4 py-2 text-sm font-semibold rounded-lg bg-transparent hover:bg-red-500 hover:text-black transition-colors duration-300"
-                                    onClick={handleSignOut}
-                                >
-                                    Sign Out
-                                </button>
                             )}
                         </>
                     )}
                     <button
                         className="text-white text-xl relative transition-transform duration-300 transform hover:scale-110"
-                        onClick={toggleMenu}
+                        onClick={() => setIsMenuOpen(prev => !prev)}
                     >
                         <FaBars />
                     </button>

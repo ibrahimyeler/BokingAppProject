@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
@@ -31,6 +29,8 @@ const Header: React.FC = () => {
         navigate('/signin');
     };
 
+    const text = "UnexpectedJourney.com";
+
     return (
         <header className="header-background bg-gradient-to-r from-purple-500 via-indigo-600 to-blue-700 py-6 shadow-md relative">
             <div className="container mx-auto flex items-center justify-between px-4">
@@ -38,9 +38,15 @@ const Header: React.FC = () => {
                     <img src="/images/logo2.png" alt="Logo" className="w-20 h-auto rounded-full border-2 border-white" />
                 </Link>
                 <div className="flex-1 flex justify-center">
-                    <h1 className="title-text text-center">
-                        UnexpectedJourney.com
-                    </h1>
+                    <div className="title-text-wrapper">
+                        <h1 className="title-text">
+                            {text.split("").map((char, index) => (
+                                <span key={index} className="title-char">
+                                    {char}
+                                </span>
+                            ))}
+                        </h1>
+                    </div>
                 </div>
                 <div className="flex items-center space-x-2">
                     {!isAuthPage && (

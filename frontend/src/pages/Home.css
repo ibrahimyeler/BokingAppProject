@@ -5,11 +5,62 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-image 1s ease-in-out; /* Yumuşak geçiş efekti */
+  position: relative; /* Animasyonun konumlandırılabilmesi için */
+  overflow: hidden; /* Arka planın kaymasını sınırlamak için */
 }
 
 .hero-overlay {
   background: rgba(0, 0, 0, 0.5); /* Opaklık ekler */
   padding: 2rem;
   border-radius: 8px;
+}
+
+.reviews-container {
+  margin: 4rem auto;
+  max-width: 800px;
+  padding: 0 1rem;
+}
+
+.review-slide {
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 0 1rem;
+}
+
+.rating {
+  font-size: 1.5rem;
+}
+
+.star {
+  color: #ffd700; /* Altın renginde yıldızlar */
+  font-size: 1.5rem;
+}
+
+.star.filled {
+  color: #ffd700; /* Dolmuş yıldızlar */
+}
+
+/* Animasyon için stil ekleyin */
+@keyframes slidingStripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+.home-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Tam genişlik */
+  height: 100%; /* Tam yükseklik */
+  background-image: linear-gradient(45deg, rgba(255, 0, 150, 0.3), rgba(0, 204, 255, 0.3)); /* Renkli şeritler */
+  background-size: 200% 200%; /* Animasyon alanını genişletir */
+  background-repeat: no-repeat;
+  animation: slidingStripes 10s linear infinite; /* Animasyon süresi ve türü */
+  z-index: -1; /* Arka planda olmasını sağlar */
 }

@@ -31,7 +31,14 @@
 }
 
 .header-background {
-    animation: backgroundChange 9s infinite; 
+    animation: backgroundChange 9s infinite;
+}
+
+.title-text-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    width: 100%;
 }
 
 .title-text {
@@ -42,6 +49,20 @@
     text-transform: capitalize; /* Yazı stilini belirliyoruz (baş harf büyük) */
     font-family: 'Roboto', sans-serif; /* Yazı tipi değişikliği */
     letter-spacing: 0.05em; /* Harfler arasına biraz boşluk ekliyoruz */
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid white; /* Yanıp sönme efekti için imleç */
+    animation: typing 4s steps(40, end) infinite, blinkCursor 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    from { border-right: 2px solid transparent; }
+    to { border-right: 2px solid white; }
 }
 
 .title-char {

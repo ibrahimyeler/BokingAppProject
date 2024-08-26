@@ -1,0 +1,44 @@
+.reviews-slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: #f8f9fa; /* Arka plan rengi */
+    padding: 20px 0;
+}
+
+.reviews-slider {
+    display: flex;
+    animation: scroll 15s linear infinite;
+}
+
+.review-item {
+    min-width: 300px; /* Her bir yorum kutusunun genişliği */
+    padding: 20px;
+    margin-right: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    flex: 0 0 auto; /* Flex öğelerinin boyutlarını ayarlar */
+}
+
+.rating {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+.star {
+    color: #ffd700; /* Altın renginde yıldızlar */
+    font-size: 1.5rem;
+}
+
+.star.filled {
+    color: #ffd700; /* Dolmuş yıldızlar */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}

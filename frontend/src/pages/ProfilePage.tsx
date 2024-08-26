@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const ProfilePage: React.FC = () => {
-  const [username, setUsername] = useState<string>('John Doe');
+  const [username, setUsername] = useState<string>('');
   const [theme, setTheme] = useState<string>('light');
   const [language, setLanguage] = useState<string>('en');
   const [avatar, setAvatar] = useState<string | null>(null); // Avatar resmi için state

@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
                 </div>
 
                 <span className="text-gray-200 flex items-center">
-                    <FaCopyright className="mr-1" /> 2024 All rights reserved.
+                    <FaCopyright className="mr-1" /> Developed by İbrahim Hakkı Yeler
                 </span>
             </div>
         </div>

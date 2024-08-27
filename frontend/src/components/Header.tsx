@@ -34,17 +34,24 @@ const Header: React.FC = () => {
     return (
         <header className="header-background bg-gradient-to-r from-purple-500 via-indigo-600 to-blue-700 py-6 shadow-md relative">
             <div className="container mx-auto flex items-center justify-between px-4">
-                <Link to="/" className="flex items-center">
-                    <img src="/images/logo2.png" alt="Logo" className="w-20 h-auto rounded-full border-2 border-white" />
-                </Link>
+                <div className="flex items-center space-x-2">
+                    <button
+                        className="text-white text-xl relative transition-transform duration-300 transform hover:scale-110"
+                        onClick={() => setIsMenuOpen(prev => !prev)}
+                    >
+                        <FaBars />
+                    </button>
+                </div>
                 <div className="flex-1 flex justify-center">
                     <div className="title-text-wrapper">
                         <h1 className="title-text">
-                            {text.split("").map((char, index) => (
-                                <span key={index} className="title-char">
-                                    {char}
-                                </span>
-                            ))}
+                            <Link to="/" className="title-link">
+                                {text.split("").map((char, index) => (
+                                    <span key={index} className="title-char">
+                                        {char}
+                                    </span>
+                                ))}
+                            </Link>
                         </h1>
                     </div>
                 </div>
@@ -81,14 +88,8 @@ const Header: React.FC = () => {
                             )}
                         </>
                     )}
-                    <button
-                        className="text-white text-xl relative transition-transform duration-300 transform hover:scale-110"
-                        onClick={() => setIsMenuOpen(prev => !prev)}
-                    >
-                        <FaBars />
-                    </button>
                     {isMenuOpen && (
-                        <div className="absolute right-0 top-full mt-2 bg-white border border-gray-300 shadow-lg z-10">
+                        <div className="absolute left-0 top-full mt-2 bg-white border border-gray-300 shadow-lg z-10">
                             <ul className="list-none p-4 space-y-2">
                                 <li><Link to="/" className="block py-2 px-6 text-gray-700 hover:bg-blue-500 hover:text-white rounded transition-colors duration-300">Home</Link></li>
                                 <li><Link to="/search/search-flight" className="block py-2 px-6 text-gray-700 hover:bg-blue-500 hover:text-white rounded transition-colors duration-300">Search Flights</Link></li>

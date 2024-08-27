@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useMutation } from 'react-query';
@@ -17,7 +19,10 @@ const Register: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>();
 
   const mutation = useMutation(apiClient.register, {
-    onSuccess: () => {
+    onSuccess: (data) => {
+      localStorage.setItem('firstName', data.firstName);
+      localStorage.setItem('lastName', data.lastName);
+      localStorage.setItem('isLoggedIn', 'true');
       setIsSubmitted(true);
       setErrorMessage(null);
     },
@@ -94,14 +99,14 @@ const Register: React.FC = () => {
               />
               {errors.confirmPassword && <p className="text-red-500 text-sm">{errors.confirmPassword.message}</p>}
             </label>
+            {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
+            <button
+              type="submit"
+              className="bg-blue-500 text-white rounded py-2 px-4 font-bold hover:bg-blue-600 transition duration-300 ease-in-out"
+            >
+              Register
+            </button>
           </div>
-          {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
-          <button type="submit" className="bg-blue-500 text-white py-1 px-2 rounded text-sm mt-5 transition-all duration-300 ease-in-out transform hover:scale-110">
-            Create Account
-          </button>
-          <p className="text-sm text-gray-600 mt-2">
-            Have an account? <a href="/signin" className="text-blue-500 hover:underline ml-1">Sign In</a>
-          </p>
         </form>
       )}
     </div>

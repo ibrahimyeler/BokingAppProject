@@ -2,36 +2,45 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    background: #f8f9fa; /* Arka plan rengi */
-    padding: 20px 0;
+    background: #1e1e2f; /* Arka plan rengi */
+    padding: 10px 0; /* Üstten ve alttan daraltma (önceden 30px idi) */
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    border: 2px solid #44475a;
+    margin: 0 auto;
+    max-width: 100%; /* Maksimum genişliği ayarladık */
 }
 
 .reviews-slider {
     display: flex;
     animation: scroll 15s linear infinite;
+    padding: 0 50px; /* Yanlardan ekstra boşluk */
 }
 
 .review-item {
-    min-width: 300px; /* Her bir yorum kutusunun genişliği */
-    padding: 20px;
-    margin-right: 20px;
-    background: rgba(0, 0, 0, 0.1);
+    min-width: 400px; /* Yorum kutularının genişliği */
+    padding: 25px; /* İçerik boşluğu */
+    margin-right: 25px; /* Kutular arasındaki boşluk */
+    background: rgba(255, 255, 255, 0.1); /* Yarı saydam arka plan */
     border-radius: 8px;
-    flex: 0 0 auto; /* Flex öğelerinin boyutlarını ayarlar */
+    border: 1px solid #44475a;
+    flex: 0 0 auto;
+    color: #f8f8f2; /* Metin rengi */
 }
 
 .rating {
-    font-size: 1.5rem;
-    margin-top: 10px;
+    font-size: 1.8rem;
+    margin-top: 15px;
+    color: #50fa7b;
 }
 
 .star {
-    color: #ffd700; /* Altın renginde yıldızlar */
-    font-size: 1.5rem;
+    color: #50fa7b; /* Yıldız rengi */
+    font-size: 1.8rem; /* Yıldız boyutu */
 }
 
 .star.filled {
-    color: #ffd700; /* Dolmuş yıldızlar */
+    color: #50fa7b;
 }
 
 @keyframes scroll {

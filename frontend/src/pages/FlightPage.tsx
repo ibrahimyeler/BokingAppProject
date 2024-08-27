@@ -1,18 +1,29 @@
 // src/FlightsPage.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import FlightSearchForm from './FlightSearchForm'; // Yeni bileşeni içe aktar
-import './FlightPage.css'; // CSS dosyanızı buraya ekleyin
+import './FlightsPage.css'; // CSS dosyanızın yolu doğru
 
 const FlightPage: React.FC = () => {
   const [showSearchForm, setShowSearchForm] = useState(false);
+  const [animatePlane, setAnimatePlane] = useState(false);
 
   const handleSearchClick = () => {
     setShowSearchForm(true);
   };
 
+  useEffect(() => {
+    // Uçak animasyonunu başlatmak için 1 saniye sonra 'animate' sınıfı eklenir.
+    const timer = setTimeout(() => {
+      setAnimatePlane(true);
+    }, 1000);
+
+    return () => clearTimeout(timer); // Bileşen unmount olduğunda timeout temizlenir.
+  }, []);
+
   return (
     <div className="flights-container">
+      <div className={`plane-animation ${animatePlane ? 'animate' : ''}`} />
       <div className="back-button-container">
         <Link to="/" className="back-to-home">Back to Home Page</Link>
       </div>

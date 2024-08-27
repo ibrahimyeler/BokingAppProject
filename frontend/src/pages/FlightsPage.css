@@ -1,0 +1,18 @@
+/* src/FlightsPage.css */
+
+.plane-animation {
+  position: absolute;
+  top: 30%; /* Uçağın yüksekliği */
+  left: -150px; /* Uçağın başlangıç noktası (ekranın sol dışı) */
+  width: 100px; /* Uçağın genişliği */
+  height: auto;
+  transition: left 10s linear; /* Uçağın süzülme süresi ve hızı */
+  background-image: url("/images/plane.jpeg"); /* Uçak görselinin yolu, public klasöründen */
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 10; /* Uçak animasyonunun içeriğin arkasında kalmaması için artırıldı */
+}
+
+.plane-animation.animate {
+  left: 110%; /* Uçağın varış noktası (ekranın sağ dışı) */
+}

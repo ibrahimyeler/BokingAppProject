@@ -5,5 +5,7 @@ export interface Tour {
   duration: number;
   price: number;
   description: string;
+  imageUrl: string; // Yeni resim alanı
   category: string; // Turun kategorisini belirtmek için eklendi
+  link: string; // Yeni link alanı
 }

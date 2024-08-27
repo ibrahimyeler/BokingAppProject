@@ -23,7 +23,7 @@ const Home: React.FC = () => {
     }, []);
 
     return (
-        <div>
+        <div className="frame-container">
             <div className="home-container" style={{ backgroundImage: `url(${images[currentImageIndex]})` }}>
                 <div className="hero-overlay">
                     <h1 className="text-5xl font-bold text-center text-white">Welcome to Unexpected Journey</h1>
